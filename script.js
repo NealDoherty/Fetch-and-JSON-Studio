@@ -1,7 +1,16 @@
 window.addEventListener("load", function(){
     fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function(response){
       response.json().then(function(json) {
-      console.log(json);
+      //console.log(json);
+      
+      
+      
+      for(let i=0;i<json.length;i++)
+      {
+        json[i].skills=json[i].skills.join(', ');
+      };
+
+
 
       let astronauts = json.map(({firstName,lastName,hoursInSpace,active,skills,picture})=>`
         <div>
@@ -19,6 +28,11 @@ window.addEventListener("load", function(){
         </div>
      ` );
       
+
+
+
+     astronauts = astronauts.join('');
+
         container.innerHTML = astronauts;
         
       });
